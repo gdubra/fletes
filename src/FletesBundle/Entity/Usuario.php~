@@ -1,0 +1,135 @@
+<?php
+namespace FletesBundle\Entity;
+
+use Symfony\Component\Security\Core\User\UserInterface;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+* @ORM\Entity
+* @ORM\Table(name="usuario")
+* @ORM\HasLifecycleCallbacks
+*/
+class Usuario implements UserInterface, \Serializable{
+    
+    /**
+    * @ORM\Column(type="integer")
+    * @ORM\Id
+    * @ORM\GeneratedValue(strategy="AUTO")
+    */
+    public $id;
+    
+    /**
+     * @ORM\Column(type="string", length=25, unique=true)
+     */
+    public $username;
+    
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
+    public $password;
+    
+    /**
+     * @ORM\Column(type="string", length=60, unique=true)
+     */
+    public $email;
+    
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    public $activo;
+    
+    /**
+    * @ORM\OneToMany(targetEntity="Viaje", mappedBy="usuario")
+    **/
+    public $viajesContratados;
+    
+    /**
+    * @ORM\OneToMany(targetEntity="Viaje", mappedBy="proveedor")
+    **/
+    public $viajesOfrecidos;
+    
+    public function __construct()
+    {
+        $this->activo = true;
+        // may not be needed, see section on salt below
+        // $this->salt = md5(uniqid(null, true));
+    }
+    
+    /**
+    * @inheritDoc
+    */
+    public function getNombreUsuario()
+    {
+        return $this->nombreUsuario;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        return md5($this->nombreUsuario);
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getContrasena()
+    {
+        return $this->contrasena;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+    }
+    
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+        $this->id,
+        $this->username,
+        $this->password,
+        // see section on salt below
+        // $this->salt,
+        ));
+    }
+    
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+        $this->id,
+        $this->username,
+        $this->password,
+        // see section on salt below
+        // $this->salt
+        ) = unserialize($serialized);
+    }
+    
+    public function getPassword(){
+    	return $passwrod;
+    }
+    
+    public function getUsername(){
+    	return $username;
+    }
+
+
+}

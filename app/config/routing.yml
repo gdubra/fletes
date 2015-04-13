@@ -1,0 +1,3 @@
+fletes:
+    resource: @FletesBundle/Controller/
+    type:     annotation

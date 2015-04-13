@@ -1,0 +1,57 @@
+<?php
+namespace FletesBundle\Entity;
+
+use Symfony\Component\Security\Core\User\UserInterface;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+* @ORM\Entity
+* @ORM\Table(name="viaje")
+* @ORM\HasLifecycleCallbacks
+*/
+class Viaje {
+    
+    /**
+    * @ORM\Column(type="integer")
+    * @ORM\Id
+    * @ORM\GeneratedValue(strategy="AUTO")
+    */
+    private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="viajes")
+     * @ORM\JoinColumn(name="proveedor_id", referencedColumnName="id")
+     **/
+    private $proveedor;
+    
+    /**
+    * @ORM\Column(type="float")
+    */
+    private $latitud;
+    
+    /**
+    * @ORM\Column(type="float")
+    */
+    private $longitud;
+    
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $direccion;
+    
+    /**
+    * @ORM\Column(type="text")
+    */
+    private $descripcion;
+    
+    public function __construct()
+    {
+  
+    }
+  
+    
+    
+
+}
+
