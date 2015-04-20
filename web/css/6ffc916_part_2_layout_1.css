@@ -99,6 +99,10 @@ form .error{
     margin-top:5px;
 }
 
+.mtop-10{
+    margin-top:5px;
+}
+
 
 /***
 ** Angular Gooogle Maps
@@ -106,5 +110,5 @@ form .error{
 
 .angular-google-map-container {
     height: 400px;
-    width: 400px;
+    width: 100%;
 }

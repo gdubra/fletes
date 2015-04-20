@@ -19383,20 +19383,16 @@ $provide.value("$locale", {
 
 //MODULO PRINCIPAL
 
-var agendana = angular.module('fletes', ['ui.bootstrap','uiGmapgoogle-maps','fn.fletes','ui.fletes']);
+var fletes = angular.module('fletes', ['ui.bootstrap','uiGmapgoogle-maps','fn.fletes','ui.fletes']);
 
 //SERIVCES
 
 //FILTERS
 
 //CONFIG
-agendana.config(['$httpProvider','datepickerConfig','datepickerPopupConfig','uiGmapGoogleMapApiProvider', function($httpProvider,datepickerConfig,datepickerPopupConfig,uiGmapGoogleMapApiProvider) {  
+fletes.config(['$httpProvider','datepickerConfig','datepickerPopupConfig','uiGmapGoogleMapApiProvider', function($httpProvider,datepickerConfig,datepickerPopupConfig,uiGmapGoogleMapApiProvider) {  
     $httpProvider.interceptors.push('ajaxAuthInterceptor');
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-    
-    datepickerConfig.startingDay = 1;
-    datepickerConfig.showWeeks = false;
-    datepickerPopupConfig.showButtonBar=false;
     
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyBSe465xZBOIqSSWukgEMD5aRIZ62b0bEs',
