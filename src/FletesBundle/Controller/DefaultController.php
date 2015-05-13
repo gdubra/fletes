@@ -32,4 +32,14 @@ class DefaultController extends Controller
 	*/
 	public function loginCheckAction(){
     }
+    
+    /**
+    * @Route("/logout",name="logout")
+    * @Method("GET")
+    */
+    public function logoutAction(){
+        return $this->render('FletesBundle:Default:login.html.php');
+    }
+    
+   
 }

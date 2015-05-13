@@ -10,7 +10,7 @@
                 array('output' => 'js/compiled/js.js')) as $url): ?>
                 <script src="<?php echo $view->escape($url) ?>"></script>
         <?php endforeach ?>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSe465xZBOIqSSWukgEMD5aRIZ62b0bEs&sensor=FALSE"
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSe465xZBOIqSSWukgEMD5aRIZ62b0bEs&sensor=FALSE&language=es"
   type="text/javascript"></script>
         <script type="text/javascript">var ajax_urls = <?php echo json_encode($view['ajax_url_manager']->get_ajax_urls(), JSON_NUMERIC_CHECK); ?>;</script>
         <?php $view['slots']->output('_assets') ?>

@@ -104,6 +104,19 @@ form .error{
 }
 
 
+/* Type Head Menu*/
+ul.dropdown-menu{
+	overflow: auto;
+	max-height: 400px;
+}
+
+ul.dropdown-menu > li {
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+
 /***
 ** Angular Gooogle Maps
 */

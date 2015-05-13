@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
 * @ORM\Entity
 * @ORM\Table(name="viaje")
-* @ORM\HasLifecycleCallbacks
 */
 class Viaje {
     
@@ -45,15 +44,6 @@ class Viaje {
     */
     private $descripcion;
     
-    public function __construct()
-    {
-  
-    }
-  
-    
-    
-
-
     /**
      * Get id
      *

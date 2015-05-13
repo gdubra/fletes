@@ -111,6 +111,10 @@ fletes.config(['$httpProvider','datepickerConfig','datepickerPopupConfig','uiGma
     $httpProvider.interceptors.push('ajaxAuthInterceptor');
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     
+    datepickerConfig.startingDay = 1;
+    datepickerConfig.showWeeks = false;
+    datepickerPopupConfig.showButtonBar=false;
+
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyBSe465xZBOIqSSWukgEMD5aRIZ62b0bEs',
         v: '3.17',

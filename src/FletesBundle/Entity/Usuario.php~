@@ -56,12 +56,12 @@ class Usuario implements UserInterface, \Serializable{
         // $this->salt = md5(uniqid(null, true));
     }
     
-    /**
+/**
     * @inheritDoc
     */
-    public function getNombreUsuario()
+    public function getUsername()
     {
-        return $this->nombreUsuario;
+        return $this->username;
     }
     
     /**
@@ -69,15 +69,15 @@ class Usuario implements UserInterface, \Serializable{
      */
     public function getSalt()
     {
-        return md5($this->nombreUsuario);
+        return md5($this->username);
     }
     
     /**
      * @inheritDoc
      */
-    public function getContrasena()
+    public function getPassword()
     {
-        return $this->contrasena;
+        return $this->password;
     }
     
     /**
@@ -122,14 +122,152 @@ class Usuario implements UserInterface, \Serializable{
         // $this->salt
         ) = unserialize($serialized);
     }
-    
-    public function getPassword(){
-    	return $passwrod;
-    }
-    
-    public function getUsername(){
-    	return $username;
+        
+        /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
+    /**
+     * Set username
+     *
+     * @param string $username
+     * @return Usuario
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
 
+        return $this;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return Usuario
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Usuario
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set activo
+     *
+     * @param boolean $activo
+     * @return Usuario
+     */
+    public function setActivo($activo)
+    {
+        $this->activo = $activo;
+
+        return $this;
+    }
+
+    /**
+     * Get activo
+     *
+     * @return boolean 
+     */
+    public function getActivo()
+    {
+        return $this->activo;
+    }
+
+    /**
+     * Add viajesContratados
+     *
+     * @param \FletesBundle\Entity\Viaje $viajesContratados
+     * @return Usuario
+     */
+    public function addViajesContratado(\FletesBundle\Entity\Viaje $viajesContratados)
+    {
+        $this->viajesContratados[] = $viajesContratados;
+
+        return $this;
+    }
+
+    /**
+     * Remove viajesContratados
+     *
+     * @param \FletesBundle\Entity\Viaje $viajesContratados
+     */
+    public function removeViajesContratado(\FletesBundle\Entity\Viaje $viajesContratados)
+    {
+        $this->viajesContratados->removeElement($viajesContratados);
+    }
+
+    /**
+     * Get viajesContratados
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getViajesContratados()
+    {
+        return $this->viajesContratados;
+    }
+
+    /**
+     * Add viajesOfrecidos
+     *
+     * @param \FletesBundle\Entity\Viaje $viajesOfrecidos
+     * @return Usuario
+     */
+    public function addViajesOfrecido(\FletesBundle\Entity\Viaje $viajesOfrecidos)
+    {
+        $this->viajesOfrecidos[] = $viajesOfrecidos;
+
+        return $this;
+    }
+
+    /**
+     * Remove viajesOfrecidos
+     *
+     * @param \FletesBundle\Entity\Viaje $viajesOfrecidos
+     */
+    public function removeViajesOfrecido(\FletesBundle\Entity\Viaje $viajesOfrecidos)
+    {
+        $this->viajesOfrecidos->removeElement($viajesOfrecidos);
+    }
+
+    /**
+     * Get viajesOfrecidos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getViajesOfrecidos()
+    {
+        return $this->viajesOfrecidos;
+    }
 }

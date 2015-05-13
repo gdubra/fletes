@@ -3,10 +3,11 @@ angular.module('fletes')
     , function ($scope,$http, GoogleMapApi) {
     
     $scope.viaje = {};
-    $scope.map = {};
-    $scope.map.center = {latitude: -34.604974,longitude: -58.433320};//centro en Ba
-    $scope.map.zoom = 10;
-    //Iniciar Mapa
+    $scope.mapConfig = {};
+    $scope.mapConfig.center = {latitude: -34.604974,longitude: -58.433320};//centro en Ba
+    $scope.mapConfig.zoom = 10;
+    $scope.map = { control:{}};
+    //Iniciar Mapa {}
     GoogleMapApi.then(function(maps) {
     $scope.googleVersion = maps.version;
     maps.visualRefresh = true;
@@ -17,7 +18,8 @@ angular.module('fletes')
             params: {
               address: direccion,
               sensor: false,
-              components:"country:AR"
+              language: 'es',
+              components:"country:AR|locality:"+direccion
             },
             transformRequest: function(data, headersGetter) {
                 var headers = headersGetter();
@@ -33,28 +35,42 @@ angular.module('fletes')
     
     
     $scope.marcador_origen = function(){
-        $scope.viaje.origen = {
+        $scope.busqueda.origen = {
                 idKey:'origen', 
-                formatted_address:$scope.viaje.origen.formatted_address, 
+                formatted_address:$scope.busqueda.origen.formatted_address, 
                 coords:{
-                        latitude: $scope.viaje.origen.geometry.location.lat,
-                        longitude: $scope.viaje.origen.geometry.location.lng
+                        latitude: $scope.busqueda.origen.geometry.location.lat,
+                        longitude: $scope.busqueda.origen.geometry.location.lng
                        }
        };
+       
+        var bounds = new google.maps.LatLngBounds();
+        bounds.extend(new google.maps.LatLng($scope.busqueda.origen.coords.latitude,$scope.busqueda.origen.coords.longitude));
+        if(angular.isDefined($scope.busqueda.origen)){
+            bounds.extend(new google.maps.LatLng($scope.busqueda.destino.coords.latitude,$scope.busqueda.destino.coords.longitude));
+        }
+        $scope.map.control.getGMap().fitBounds(bounds);
     };
     
     $scope.marcador_destino = function(){
-        $scope.viaje.destino = {
+        $scope.busqueda.destino = {
                 idKey:'destino', 
-                formatted_address:$scope.viaje.destino.formatted_address, 
+                formatted_address:$scope.busqueda.destino.formatted_address, 
                 coords:{
-                        latitude: $scope.viaje.destino.geometry.location.lat,
-                        longitude: $scope.viaje.destino.geometry.location.lng
+                        latitude: $scope.busqueda.destino.geometry.location.lat,
+                        longitude: $scope.busqueda.destino.geometry.location.lng
                        }
        };
+        
+        var bounds = new google.maps.LatLngBounds();
+        bounds.extend(new google.maps.LatLng($scope.busqueda.destino.coords.latitude,$scope.busqueda.destino.coords.longitude));
+        if(angular.isDefined($scope.busqueda.origen)){
+            bounds.extend(new google.maps.LatLng($scope.busqueda.origen.coords.latitude,$scope.busqueda.origen.coords.longitude));
+        }
+       $scope.map.control.getGMap().fitBounds(bounds);
     };
     
-    //$scope.$watch('viaje.origen',function(){marcador_origen();});
+    //$scope.$watch('busqueda.origen',function(){marcador_origen();});
 
     
 }]);
