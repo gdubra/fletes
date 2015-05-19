@@ -7,17 +7,17 @@
 <?php $view['slots']->stop() ?>  
 <div class="container" data-ng-controller="IndexCtrl">
     <div class="row">
-        <form class="col-xs-12 col-sm-6 col-md-6 form-horizontal" role="form" name="form" ng-submit="submit()">
+        <form class="col-xs-12 col-sm-6 col-md-6" role="form" name="form" ng-submit="submit()">
                 <div class="form-group">
-                    <label class="col-xs-2 col-sm-2 col-md-2" for="vOrigen">Origen</label>
-                    <div class="col-xs-10 col-sm-10 col-md-10">
+                    <div class="col-xs-12 col-sm-12 col-md-12 mtop-10">
+                        <label for="vOrigen">Origen</label>
                         <input type="text" id="vOrigen" name="vOrigen" ng-model="busqueda.origen" placeholder="Direccion de Origien" typeahead="direccion as direccion.formatted_address for direccion in cosnultarGmap($viewValue)" typeahead-loading="loadingLocations" class="form-control" typeahead-on-select="marcador_origen()">  
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-2 col-sm-2 col-md-2" for="vDestino">Destino</label>
-                    <div class="col-xs-10 col-sm-10 col-md-10">
-                        <input type="text" ng-model="busqueda.destino" placeholder="Direccion de Destino" typeahead="direccion as direccion.formatted_address for direccion in cosnultarGmap($viewValue)" typeahead-loading="loadingLocations" class="form-control" typeahead-on-select="marcador_destino()">
+                    <div class="col-xs-12 col-sm-12 col-md-12 mtop-10">
+                        <label for="vDestino">Destino</label>
+                        <input type="text" ng-model="busqueda.destino" placeholder="Direccion de Destino" typeahead="direccion as direccion.formatted_address for direccion in cosnultarGmap($viewValue)" typeahead-loading="loadingLocations" class="form-control" typeahead-on-select="marcador_destino(localidad,index)">
                     </div>
                 </div>
                 

@@ -33,7 +33,8 @@ class AjaxUrlManager extends Helper{
 
     private function get_urls_array(){
         return array(
-        'HOMEPAGE'=>$this->router->generate('homepage')
+        'HOMEPAGE'=>$this->router->generate('homepage'),
+        'CREAR_OFERTA'=>$this->router->generate('crear_oferta')
         );
     }
     

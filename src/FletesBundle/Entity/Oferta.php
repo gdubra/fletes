@@ -15,37 +15,15 @@ class Oferta{
     */
     private $id;
     /**
-    * @ORM\Column(type="string", length=128)
+     * @ORM\Embedded(class="FletesBundle\Entity\Localidad", columnPrefix = "origen_")
     */
-    private $localidadOrigen;
+    private  $origen;
+    
     /**
-    * @ORM\Column(type="string", length=128)
+    * @ORM\Embedded(class="FletesBundle\Entity\Localidad", columnPrefix = "destino_")
     */
-    private $localidadOrigenGID;
-    /**
-    * @ORM\Column(type="float")
-    */
-    private $lngOrigen;
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $latOrigen;
-    /**
-    * @ORM\Column(type="string", length=128)
-    */
-    private $localidadDestino;
-    /**
-    * @ORM\Column(type="string", length=128)
-    */
-    private $localidadDestinoGID;
-    /**
-    * @ORM\Column(type="float")
-    */
-    private $lngDestino;
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $latDestino;
+    private $destino;
+    
     /**
     * @ORM\Column(type="text")
     */

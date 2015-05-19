@@ -19,6 +19,31 @@ agendanafn.factory('ajaxAuthInterceptor', function() {
     return ajaxAuthInterceptor;
 });
 
+agendanafn.factory('gmapUtil',['$http', function($http) {  
+    return {
+        consulta_geocode:
+            function(direccion){
+            return $http({method: 'GET',url:'http://maps.googleapis.com/maps/api/geocode/json', 
+                params: {
+                  address: direccion,
+                  sensor: false,
+                  language: 'es',
+                  components:"country:AR|locality:locality"
+                },
+                transformRequest: function(data, headersGetter) {
+                    var headers = headersGetter();
+
+                    delete headers['X-Requested-With'];
+
+                    return headers;
+                }
+              }).then(function(response){
+                return angular.isDefined(response.data.results)? response.data.results : [];
+              });
+        }
+    };
+}]);
+
 agendanafn.factory('ajaxManager', ['$http','$rootScope', function($http,$rootScope) {
     return {
         update_scope_model: 

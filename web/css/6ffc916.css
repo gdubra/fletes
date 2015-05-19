@@ -110,7 +110,26 @@ form .error{
 }
 
 .mtop-10{
-    margin-top:5px;
+    margin-top:10px;
+}
+
+.no-left-padding{
+	padding-left: 0px !important;
+}
+
+.row.no-side-margins{
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
+
+.form-group-icon-container{
+	line-height: 39px;
+}
+
+.form-group-icon-container > .glyphicon{
+	font-size: 19px;
+    top: 6px;
+    cursor: pointer;
 }
 
 
