@@ -1,0 +1,1 @@
+Te damos la bienvenida a "Nuestro Sitio", para activar tu cuenta haz click <a href="<?php echo $this->get('router')->generate('confirmar_usuario',array('usuario'=>$usuario->getUsuario(),'token'=>$usuario->getSalt()),true);?>">aqui</a>

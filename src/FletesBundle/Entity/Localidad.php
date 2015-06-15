@@ -24,10 +24,6 @@ class Localidad{
      */
     public $lat;
     
-    function __construct(){
-        return parent::construct();
-    }
-    
     function setLocalidad($localidad){
         $this->localidad = $localidad;
     }

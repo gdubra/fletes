@@ -15,11 +15,11 @@
         <script type="text/javascript">var ajax_urls = <?php echo json_encode($view['ajax_url_manager']->get_ajax_urls(), JSON_NUMERIC_CHECK); ?>;</script>
         <?php $view['slots']->output('_assets') ?>
     </head>
-    <body data-role="document" class="container">
+    <body data-role="document" data-ng-app="fletes">
       	<?php echo $view->render('FletesBundle:Default:_navbar.html.php') ?>
-        <div  data-ng-app="fletes">
+        <div  class="container content" >
             <div  data-ng-controller="AlertasCtrl">
-                <alert ng-repeat="alerta in alertas" class="alerta-global" type="alerta.tipo" close="alertas.splice($index, 1)">
+                <alert ng-repeat="alerta in alertas" class="alerta-global" type="{{alerta.tipo}}" close="alertas.splice($index, 1)">
                     <span data-ng-if="alerta.tipo=='danger'" class="glyphicon glyphicon-exclamation-sign" data-aria-hidden="true"></span>
                     <span data-ng-if="alerta.tipo=='warning'" class="glyphicon glyphicon-warning-sign" data-aria-hidden="true"></span>
                     <span data-ng-if="alerta.tipo=='success'" class="glyphicon glyphicon-ok" data-aria-hidden="true"></span>

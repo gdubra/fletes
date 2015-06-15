@@ -3,7 +3,7 @@ namespace FletesBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
-* @ORM\Entity
+* @ORM\Entity(repositoryClass="FletesBundle\Repository\OfertaRepository")
 * @ORM\Table(name="oferta")
 */
 class Oferta{
@@ -13,22 +13,28 @@ class Oferta{
     * @ORM\Id
     * @ORM\GeneratedValue(strategy="AUTO")
     */
-    private $id;
+    public $id;
     /**
      * @ORM\Embedded(class="FletesBundle\Entity\Localidad", columnPrefix = "origen_")
     */
-    private  $origen;
+    public  $origen;
     
     /**
     * @ORM\Embedded(class="FletesBundle\Entity\Localidad", columnPrefix = "destino_")
     */
-    private $destino;
+    public $destino;
     
     /**
     * @ORM\Column(type="text")
     */
-    private $localidadesAceptadas;
+    public $localidadesAceptadas;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="ofertas")
+     * @ORM\JoinColumn(name="proveedor_id", referencedColumnName="id")
+     **/
+    public $proveedor;
+    
     /**
      * Get id
      *
@@ -45,9 +51,9 @@ class Oferta{
      * @param string $localidadOrigen
      * @return Oferta
      */
-    public function setLocalidadOrigen($localidadOrigen)
+    public function setOrigen($localidadOrigen)
     {
-        $this->localidadOrigen = $localidadOrigen;
+        $this->origen = $localidadOrigen;
 
         return $this;
     }
@@ -57,79 +63,11 @@ class Oferta{
      *
      * @return string 
      */
-    public function getLocalidadOrigen()
+    public function getOrigen()
     {
-        return $this->localidadOrigen;
+        return $this->origen;
     }
 
-    /**
-     * Set localidadOrigenGID
-     *
-     * @param string $localidadOrigenGID
-     * @return Oferta
-     */
-    public function setLocalidadOrigenGID($localidadOrigenGID)
-    {
-        $this->localidadOrigenGID = $localidadOrigenGID;
-
-        return $this;
-    }
-
-    /**
-     * Get localidadOrigenGID
-     *
-     * @return string 
-     */
-    public function getLocalidadOrigenGID()
-    {
-        return $this->localidadOrigenGID;
-    }
-
-    /**
-     * Set lngOrigen
-     *
-     * @param float $lngOrigen
-     * @return Oferta
-     */
-    public function setLngOrigen($lngOrigen)
-    {
-        $this->lngOrigen = $lngOrigen;
-
-        return $this;
-    }
-
-    /**
-     * Get lngOrigen
-     *
-     * @return float 
-     */
-    public function getLngOrigen()
-    {
-        return $this->lngOrigen;
-    }
-
-    /**
-     * Set latOrigen
-     *
-     * @param float $latOrigen
-     * @return Oferta
-     */
-    public function setLatOrigen($latOrigen)
-    {
-        $this->latOrigen = $latOrigen;
-
-        return $this;
-    }
-
-    /**
-     * Get latOrigen
-     *
-     * @return float 
-     */
-    public function getLatOrigen()
-    {
-        return $this->latOrigen;
-    }
 
     /**
      * Set localidadDestino
@@ -137,9 +75,9 @@ class Oferta{
      * @param string $localidadDestino
      * @return Oferta
      */
-    public function setLocalidadDestino($localidadDestino)
+    public function setDestino($localidadDestino)
     {
-        $this->localidadDestino = $localidadDestino;
+        $this->destino = $localidadDestino;
 
         return $this;
     }
@@ -149,78 +87,9 @@ class Oferta{
      *
      * @return string 
      */
-    public function getLocalidadDestino()
+    public function getDestino()
     {
-        return $this->localidadDestino;
-    }
-
-    /**
-     * Set localidadDestinoGID
-     *
-     * @param string $localidadDestinoGID
-     * @return Oferta
-     */
-    public function setLocalidadDestinoGID($localidadDestinoGID)
-    {
-        $this->localidadDestinoGID = $localidadDestinoGID;
-
-        return $this;
-    }
-
-    /**
-     * Get localidadDestinoGID
-     *
-     * @return string 
-     */
-    public function getLocalidadDestinoGID()
-    {
-        return $this->localidadDestinoGID;
-    }
-
-    /**
-     * Set lngDestino
-     *
-     * @param float $lngDestino
-     * @return Oferta
-     */
-    public function setLngDestino($lngDestino)
-    {
-        $this->lngDestino = $lngDestino;
-
-        return $this;
-    }
-
-    /**
-     * Get lngDestino
-     *
-     * @return float 
-     */
-    public function getLngDestino()
-    {
-        return $this->lngDestino;
-    }
-
-    /**
-     * Set latDestino
-     *
-     * @param float $latDestino
-     * @return Oferta
-     */
-    public function setLatDestino($latDestino)
-    {
-        $this->latDestino = $latDestino;
-
-        return $this;
-    }
-
-    /**
-     * Get latDestino
-     *
-     * @return float 
-     */
-    public function getLatDestino()
-    {
-        return $this->latDestino;
+        return $this->destino;
     }
 
     /**
@@ -244,5 +113,9 @@ class Oferta{
     public function getLocalidadesAceptadas()
     {
         return $this->localidadesAceptadas;
+    }
+    
+    public function setProveedor($proveedor){
+        $this->proveedor = $proveedor;
     }
 }

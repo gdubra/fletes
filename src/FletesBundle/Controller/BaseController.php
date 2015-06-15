@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class BaseController extends Controller{
     
     protected function getRepo($entity){
-        return $this->getDoctrine()->getRepository($entity);
+        return $this->getDoctrine()->getRepository("FletesBundle:{$entity}");
     } 
     /**
      * 

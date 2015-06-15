@@ -1,4 +1,4 @@
-var agendanaui = angular.module('ui.fletes',['ui.fletes.tpls']);
+var agendanaui = angular.module('ui.fletes',['ui.fletes.tpls','ui.fletes.componentes']);
 angular.module('ui.fletes.tpls',['template/genericos/confirmar.html']);
 //DIRECTIVES
 agendanaui.directive('validar', function() {
@@ -40,6 +40,78 @@ agendanaui.controller('confirmarCtrl', function ($scope, $modal, contenido,confi
         }
       });
 });
+
+angular.module('ui.fletes.componentes',[])
+.directive('botonCmp',function($compile,$q){
+    return {
+      restrict: 'A',
+      scope: {
+          'btnClick': '&?ngClick',
+          'btnClass': '&?ngClass',
+          'btnDisabled': '=?ngDisabled',
+      }, 
+      link:  function (scope, element, attrs){
+              scope.buttonLoading = false;
+              
+              if(angular.isDefined(attrs['ngClick'])){
+                  scope.wrapped_ng_click = function(){
+                      scope.buttonLoading = true;
+                      $q.when(scope.btnClick()).then(function(){scope.buttonLoading = false;},function(){scope.buttonLoading = false;});
+                  };
+              }
+              
+              var html = '';
+              html += '<button type="'+attrs['type']+'" class="'+attrs['class']+'"';
+              html += attrs.ngClick?'data-ng-click="wrapped_ng_click()"':'';
+              html += attrs.ngDisabled?'data-ng-disabled="btnDisabled"':'';
+              html += '>';
+              html += '<span ng-hide="buttonLoading">'+element.text()+'</span>';
+              html += '<span ng-show="buttonLoading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>';
+              html += '</button>';
+              element.replaceWith($compile(html)(scope));
+      }
+  };})
+  .directive('iconoCmp',function($compile,$q){
+      return {
+        restrict: 'A',
+        scope: {
+            'iconClick': '&ngClick',
+            'iconClass': '&ngClass',
+            'icon': '@',
+            'autobrewActionIcon':'@'
+        }, 
+        link:  function (scope, element, attrs){
+                
+                scope.buttonLoading = false;
+                scope.wrapped_ng_click = function(){
+                    scope.buttonLoading = true;
+                    $q.when(scope.iconClick()).then(function(){scope.buttonLoading = false;},function(){scope.buttonLoading = false;});
+                };
+                
+                if(angular.isDefined(attrs['ngClass'])){
+                    scope.wrapped_ng_class = function(){return 'glyphicon '+ (scope.buttonLoading ? 'glyphicon-refresh glyphicon-refresh-animate' : scope.iconClass());};
+                }else{
+                    scope.wrapped_ng_class = function(){return 'glyphicon ' + (scope.buttonLoading ? 'glyphicon-refresh glyphicon-refresh-animate' : scope.autobrewActionIcon);};
+                }
+                
+                ignoreAttr = ['ngClick', 'ngClass','ngShow','ngDisabled'];
+                var html = '';
+                html += '<span ';
+                for(var attr in attrs.$attr){
+                    if(ignoreAttr.indexOf(attr) == -1){
+                        html += attr+'="'+attrs[attr]+'" ';
+                    }
+                }
+                html += attrs.ngShow? 'data-ng-show="'+attrs.ngShow+'" ': '';
+                html += attrs.ngDisabled? 'data-ng-disabled="'+attrs.ngDisabled+'" ':'';
+                html += 'data-ng-click="wrapped_ng_click()" ';
+                html += 'data-ng-class="wrapped_ng_class()">';
+                html += '</span>';
+                element.replaceWith($compile(html)(scope));
+        }
+    };})
+
+
 
 
 //TEMPLATES

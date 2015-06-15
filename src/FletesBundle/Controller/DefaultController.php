@@ -2,6 +2,8 @@
 
 namespace FletesBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,7 +17,7 @@ class DefaultController extends Controller
 	*/
 	public function indexAction()
 	{
-		return $this->render('FletesBundle:Default:index.html.php');
+		return $this->render('FletesBundle:Oferta:listadoOferta.html.php');
 	}
 	
 	/**

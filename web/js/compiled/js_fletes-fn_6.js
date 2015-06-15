@@ -19,7 +19,7 @@ agendanafn.factory('ajaxAuthInterceptor', function() {
     return ajaxAuthInterceptor;
 });
 
-agendanafn.factory('gmapUtil',['$http', function($http) {  
+agendanafn.factory('gmapUtil', ['$http', function($http) {  
     return {
         consulta_geocode:
             function(direccion){
@@ -40,7 +40,42 @@ agendanafn.factory('gmapUtil',['$http', function($http) {
               }).then(function(response){
                 return angular.isDefined(response.data.results)? response.data.results : [];
               });
+        },
+        traducir_localidad:
+            function(gmapLocalidad){
+                return {
+                    gid: gmapLocalidad.place_id, 
+                    localidad:gmapLocalidad.formatted_address,
+                    formatted_address: gmapLocalidad.formatted_address,
+                    lat: gmapLocalidad.geometry.location.lat,
+                    lng: gmapLocalidad.geometry.location.lng
+                    };
+        },
+        
+        encuadrar_mapa:
+            function(gmap,origen,destino,otrasLocalidades){
+            var bounds = new google.maps.LatLngBounds();
+            if(angular.isDefined(destino)){
+                bounds.extend(new google.maps.LatLng(destino.lat,destino.lng));
+            }
+            if(angular.isDefined(origen)){
+                bounds.extend(new google.maps.LatLng(origen.lat,origen.lng));
+            }
+            
+            if(angular.isDefined(otrasLocalidades)){
+                for(var i=0;i<otrasLocalidades.length;i++){
+                    bounds.extend(new google.maps.LatLng(otrasLocalidades[i].lat,otrasLocalidades[i].lng));
+                }
+            }
+            gmap.control.getGMap().fitBounds(bounds);
+        },
+        
+        obtener_cordenadas : 
+            function(localidad){
+                return {latitude:localidad.lat,longitude: localidad.lng};
         }
+        
+        
     };
 }]);
 

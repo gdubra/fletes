@@ -1,36 +1,30 @@
-<head>
-<!-- Bootstrap core CSS -->
-    <link href="<?php echo $view['assets']->getUrl('bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="<?php echo $view['assets']->getUrl('bundles/fletes/css/cc/layout.css') ?>" rel="stylesheet">
-
-</head>
-<body>
+<?php $view->extend('FletesBundle::layout.html.php') ?><body>
 <div class="container">
-<div class="col-md-8 center-block">
-    <div class="row">
-        <form action="login_check" method="POST" class="form-horizontal">
-            <div class="form-group">
-                <label for="_username" class="col-sm-2 control-label">Nombre Usuario</label>
-                <div class="col-sm-10">
-                    <input class="form-control" type="text" placeholder="Nombre de usuario" name="_username"/>
+<div class="col-xs-10 col-sm-7 col-md-5 center-block">
+    
+    <div class="panel panel-default">
+      <div class="panel-body">
+            <h2 class="title">
+                Iniciar sesión
+            </h2>
+            <form action="login_check" method="POST" class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" placeholder="Mail o nombre de usuario " name="_username"/>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="_password" class="col-sm-2 control-label">Password</label>
-                <div class="col-sm-10">
-                    <input class="form-control" type="password" placeholder="Password" name="_password"/>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input class="form-control" type="password" placeholder="Clave" name="_password"/>
+                        <a class="pull-right" href="<?php echo $view['router']->generate('formulario_link_resetear_clave')?>">¿olvidaste tu clave?</a>
+                    </div>
                 </div>
-                
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <input class="btn btn-default" type="submit" value="Login"/>
-                </div>
-            </div>
-        
-        </form>
+                    <input class="col-xs-12 btn btn-success" type="submit" value="Iniciar sesión"/>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <span class="center-block text-center">Aun no te registraste, <a href="<?php echo $view['router']->generate('registrar') ?>">hazlo ahora!!!</a></span>
+        </div>
     </div>
 </div>
 </div>

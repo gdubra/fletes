@@ -1,0 +1,4 @@
+services:
+    usuario_service:
+            class:        FletesBundle\Service\ServicioUsuario
+            arguments:    [@doctrine.orm.entity_manager,@fletes_encoder,@templating,@mailer]

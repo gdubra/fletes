@@ -6,7 +6,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
-* @ORM\Entity
+* @ORM\Entity(repositoryClass="FletesBundle\Repository\UsuarioRepository")
 * @ORM\Table(name="usuario")
 * @ORM\HasLifecycleCallbacks
 */
@@ -17,51 +17,64 @@ class Usuario implements UserInterface, \Serializable{
     * @ORM\Id
     * @ORM\GeneratedValue(strategy="AUTO")
     */
-    public $id;
+    private $id;
     
     /**
      * @ORM\Column(type="string", length=25, unique=true)
      */
-    public $username;
+    public $usuario;
     
     /**
      * @ORM\Column(type="string", length=64)
      */
-    public $password;
+    private $password;
     
     /**
      * @ORM\Column(type="string", length=60, unique=true)
      */
-    public $email;
+    private $email;
     
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
-    public $activo;
+    private $activo;
     
     /**
-    * @ORM\OneToMany(targetEntity="Viaje", mappedBy="usuario")
-    **/
-    public $viajesContratados;
+     * @ORM\OneToMany(targetEntity="Oferta", mappedBy="proveedor")
+     **/
+    private $ofertas;
     
     /**
-    * @ORM\OneToMany(targetEntity="Viaje", mappedBy="proveedor")
-    **/
-    public $viajesOfrecidos;
+     * @ORM\Column(type="string", length=128)
+     */
+    public $nombre;
+    /**
+     * @ORM\Column(type="string", length=128)
+     */
+    
+    public $apellido;
+    
+    /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     */
+    public $fotoPerfil;
     
     public function __construct()
     {
-        $this->activo = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid(null, true));
+        
     }
     
-/**
+    /**
     * @inheritDoc
     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+    
     public function getUsername()
     {
-        return $this->username;
+        return $this->usuario;
     }
     
     /**
@@ -69,7 +82,7 @@ class Usuario implements UserInterface, \Serializable{
      */
     public function getSalt()
     {
-        return md5($this->username);
+        return md5($this->usuario);
     }
     
     /**
@@ -102,7 +115,7 @@ class Usuario implements UserInterface, \Serializable{
     {
         return serialize(array(
         $this->id,
-        $this->username,
+        $this->usuario,
         $this->password,
         // see section on salt below
         // $this->salt,
@@ -116,7 +129,7 @@ class Usuario implements UserInterface, \Serializable{
     {
         list (
         $this->id,
-        $this->username,
+        $this->usuario,
         $this->password,
         // see section on salt below
         // $this->salt
@@ -134,14 +147,14 @@ class Usuario implements UserInterface, \Serializable{
     }
 
     /**
-     * Set username
+     * Set usuario
      *
-     * @param string $username
+     * @param string $usuario
      * @return Usuario
      */
-    public function setUsername($username)
+    public function setUsuario($usuario)
     {
-        $this->username = $username;
+        $this->usuario = $usuario;
 
         return $this;
     }
@@ -204,70 +217,28 @@ class Usuario implements UserInterface, \Serializable{
     {
         return $this->activo;
     }
-
-    /**
-     * Add viajesContratados
-     *
-     * @param \FletesBundle\Entity\Viaje $viajesContratados
-     * @return Usuario
-     */
-    public function addViajesContratado(\FletesBundle\Entity\Viaje $viajesContratados)
-    {
-        $this->viajesContratados[] = $viajesContratados;
-
-        return $this;
+    
+    public function getNombre(){
+        return $this->nombre;
     }
-
-    /**
-     * Remove viajesContratados
-     *
-     * @param \FletesBundle\Entity\Viaje $viajesContratados
-     */
-    public function removeViajesContratado(\FletesBundle\Entity\Viaje $viajesContratados)
-    {
-        $this->viajesContratados->removeElement($viajesContratados);
+    
+    public function setNombre($nombre){
+        $this->nombre = $nombre;
     }
-
-    /**
-     * Get viajesContratados
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getViajesContratados()
-    {
-        return $this->viajesContratados;
+    
+    public function getApellido(){
+        return $this->apellido;
     }
-
-    /**
-     * Add viajesOfrecidos
-     *
-     * @param \FletesBundle\Entity\Viaje $viajesOfrecidos
-     * @return Usuario
-     */
-    public function addViajesOfrecido(\FletesBundle\Entity\Viaje $viajesOfrecidos)
-    {
-        $this->viajesOfrecidos[] = $viajesOfrecidos;
-
-        return $this;
+    
+    public function setApellido($apellido){
+        $this->apellido = $apellido;
     }
-
-    /**
-     * Remove viajesOfrecidos
-     *
-     * @param \FletesBundle\Entity\Viaje $viajesOfrecidos
-     */
-    public function removeViajesOfrecido(\FletesBundle\Entity\Viaje $viajesOfrecidos)
-    {
-        $this->viajesOfrecidos->removeElement($viajesOfrecidos);
+    
+    public function getFechaNacimiento(){
+        return $this->apellido;
     }
-
-    /**
-     * Get viajesOfrecidos
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getViajesOfrecidos()
-    {
-        return $this->viajesOfrecidos;
+    
+    public function getFotoPerfil(){
+        
     }
 }

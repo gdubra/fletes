@@ -12,42 +12,45 @@ security:
         usuarios:
             entity:
                 class: FletesBundle:Usuario
-                property: username
 
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        
+        encode:
+            pattern:  ^/sha512/*
+            security: false
+        
         encode:
             pattern:  ^/sha512/*
             security: false
 
-        login:
-            pattern:  ^/login$
-            security: false
-        
         secured_area:
-            pattern:    ^/
+            pattern: ^/
             provider: usuarios
             form_login:
-                # submit the login form here
                 check_path: /login_check
-
-                # the user is redirected here when they need to log in
                 login_path: /login
-
-                # login success redirecting options (read further below)
                 always_use_default_target_path: true
                 default_target_path: /
-
-                # login failure redirecting options (read further below)
                 failure_forward: false
             logout:
                 path:   /logout
                 target: /
                 invalidate_session: false
+            anonymous:    ~
 
     access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, roles: ROLE_USER }
+        - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario?$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/formulario/?$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/confirmar/.*/?$, role: IS_AUTHENTICATED_ANONYMOUSLY } 
+        - { path: ^/ususario/reset$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/clave/reset/?.*$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/confirmar_reseteo/?$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/ofertas$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/oferta/b$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: ROLE_USER }
 

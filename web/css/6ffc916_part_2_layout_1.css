@@ -1,7 +1,37 @@
+html{
+	background-color: #f7fafa;
+}
+
 body {
   padding-top: 70px;
-  padding-bottom: 30px;
+  background-color: #f7fafa;
 }
+
+/**
+** HEADER and FOOTER
+**/
+.head-logo{
+    margin: 0px;
+    padding: 10px 10px;
+    display: inline-block;
+    float: left;
+}
+
+.footer{
+	background: #333 none repeat scroll 0 0;
+    border-top: 6px solid #666;
+	margin: 0 !important;
+	color: #ccc;
+}
+
+.container{
+    background-color: #f7fafa;
+}
+
+.container.content{
+    min-height: 80vh;
+}
+
 /*Alineacion*/
 .vertical-align {
   display: flex;
@@ -37,9 +67,35 @@ form .error{
     margin-top: 5px;
 }
 
+
 /**
 **   BOOTSTRAP MODIFICATIONS
 **/
+
+.navbar-collapse{
+	background: white;
+	border-bottom: 1px solid #d9d9de;
+}
+.navbar{
+    border-bottom: 1px solid #d9d9de;
+    height: 60px;
+    background-color: white;
+    float: right;
+}
+
+.navbar-nav{
+	float: right;
+}
+
+.navbar-nav > li > a {
+    padding-bottom: 19px;
+    padding-top: 19px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
 
 .theme-dropdown .dropdown-menu {
   position: static;
@@ -103,21 +159,35 @@ form .error{
     margin-top:10px;
 }
 
-.no-left-padding{
-	padding-left: 0px !important;
+.mtop-15{
+    margin-top:15px;
 }
 
-.row.no-side-margins{
-	margin-left: 0px !important;
-	margin-right: 0px !important;
+.mtop-20{
+    margin-top:15px;
+}
+
+
+.no-left-padding{
+    padding-left: 0px !important;
+}
+
+.no-side-margins{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.no-side-paddings{
+	padding-left: 0px !important;
+    padding-right: 0px !important; 
 }
 
 .form-group-icon-container{
-	line-height: 39px;
+    line-height: 39px;
 }
 
 .form-group-icon-container > .glyphicon{
-	font-size: 19px;
+    font-size: 19px;
     top: 6px;
     cursor: pointer;
 }
@@ -133,6 +203,27 @@ ul.dropdown-menu > li {
     font-size: 13px;
     font-weight: 700;
     cursor: pointer;
+}
+
+.glyphicon-refresh-animate {
+-animation: spin .7s infinite linear;
+-ms-animation: spin .7s infinite linear;
+-webkit-animation: spinw .7s infinite linear;
+-moz-animation: spinm .7s infinite linear;
+}
+ 
+@keyframes spin {
+from { transform: scale(1) rotate(0deg);}
+to { transform: scale(1) rotate(360deg);}
+}
+@-webkit-keyframes spinw {
+from { -webkit-transform: rotate(0deg);}
+to { -webkit-transform: rotate(360deg);}
+}
+ 
+@-moz-keyframes spinm {
+from { -moz-transform: rotate(0deg);}
+to { -moz-transform: rotate(360deg);}
 }
 
 
