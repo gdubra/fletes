@@ -56,15 +56,16 @@ doctrine:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
+    bundles:        [FletesBundle ]
     filters:
-        sass:    ~
-        compass: ~
+        cssrewrite: ~
 
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
+
 
 services:
     ajax_url_manager:

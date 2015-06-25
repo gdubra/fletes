@@ -10,5 +10,6 @@ parameters:
     mailer_host: null
     mailer_user: devnamemail@gmail.com
     mailer_password: ULin2013
+    mailer_port: 465
     locale: en
     secret: fletes

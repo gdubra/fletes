@@ -37,6 +37,7 @@ class AjaxUrlManager extends Helper{
         //OFERTA
         'CREAR_OFERTA'=>$this->router->generate('crear_oferta'),
         'BUSCAR_OFERTA'=>$this->router->generate('buscar_oferta'),
+        'VER_OFERTA'=>$this->router->generate('ver_oferta',array('id'=>':id')),
         //USUARIO
         'CREAR_USUARIO'=>$this->router->generate('crear_usuario'),
         'CONFIRMAR_LINK_RESETEAR_CLAVE'=>$this->router->generate('confirmar_link_resetear_clave'),

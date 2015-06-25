@@ -1,6 +1,6 @@
 <?php $view->extend('FletesBundle::layout.html.php') ?><body>
 <?php $view['slots']->start('_assets') ?>        
-        <?php foreach ($view['assetic']->javascripts(array('bundles/fletes/js/formulario-resetear-clave-ctrl.js'),array(),
+        <?php foreach ($view['assetic']->javascripts(array('@FletesBundle/Resources/public/js/formulario-resetear-clave-ctrl.js'),array(),
                    array('output' => 'js/compiled/formulario_restear_clave.js')) as $url): ?>
             <script src="<?php echo $view->escape($url) ?>"></script>
         <?php endforeach ?>

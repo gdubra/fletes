@@ -1,10 +1,10 @@
 <?php $view->extend('FletesBundle::layout.html.php') ?>
 <?php $view['slots']->start('_assets') ?>        
-        <?php foreach ($view['assetic']->javascripts(array('bundles/fletes/js/listado-oferta-ctrl.js'),array(),
+        <?php foreach ($view['assetic']->javascripts(array('@FletesBundle/Resources/public/js/listado-oferta-ctrl.js'),array(),
                    array('output' => 'js/compiled/js.js')) as $url): ?>
             <script src="<?php echo $view->escape($url) ?>"></script>
         <?php endforeach ?>
-        <?php foreach ($view['assetic']->stylesheets(array('bundles/fletes/css/listado-oferta.css')) as $url): ?>
+        <?php foreach ($view['assetic']->stylesheets(array('@FletesBundle/Resources/public/css/listado-oferta.css')) as $url): ?>
             <link rel="stylesheet" href="<?php echo $view->escape($url) ?>" />
         <?php endforeach ?>
 <?php $view['slots']->stop() ?>
@@ -30,6 +30,9 @@
                  <h4>{{oferta.origen.localidad}}</h4>
                  <h4>{{oferta.destino.localidad}}</h4>
                 </div>
+                <a ng-href="{{oferta.id|veroferta}}">
+                    Ver Detalle
+                </a>
             </div>
             <div class="panel panel-default text-center" ng-show="ofertas != undefined && paginador.total==0">
                 <div class="panel-body">

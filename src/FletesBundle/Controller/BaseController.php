@@ -30,4 +30,12 @@ class BaseController extends Controller{
                                             'errores' => $errores
         ), JSON_NUMERIC_CHECK));
     }
+    
+    public function render404($mensaje=null){
+        if($mensaje){
+            return $this->render('FletesBundle:Default:404.html.php',array($mensaje));
+        }else{
+            return $this->render('FletesBundle:Default:404.html.php');
+        }
+    }
 }

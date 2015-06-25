@@ -52,5 +52,6 @@ security:
         - { path: ^/usuario/confirmar_reseteo/?$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/ofertas$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/oferta/b$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/oferta/ver/1$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, role: ROLE_USER }
 

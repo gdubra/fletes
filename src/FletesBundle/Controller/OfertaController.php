@@ -158,4 +158,16 @@ class OfertaController extends BaseController{
     public function listado(){
         return $this->render('FletesBundle:Oferta:listadoOferta.html.php');
     }
+    
+    /**
+     * @Route("/oferta/ver/{id}",name="ver_oferta" )
+     * @Method("GET")
+     */
+    public function ver($id){
+        $oferta = $this->getRepo('Oferta')->find($id);
+        if(!$oferta){
+            return $this->render404();
+        }
+        return $this->render('FletesBundle:Oferta:oferta.html.php',array('oferta'=>$oferta));
+    }
 }

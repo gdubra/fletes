@@ -1,6 +1,6 @@
 <?php $view->extend('FletesBundle::layout.html.php') ?>
 <?php $view['slots']->start('_assets') ?>        
-        <?php foreach ($view['assetic']->javascripts(array('bundles/fletes/js/formulario-usuario-ctrl.js'),array(),
+        <?php foreach ($view['assetic']->javascripts(array('@FletesBundle/Resources/public/js/formulario-usuario-ctrl.js'),array(),
                    array('output' => 'js/compiled/js.js')) as $url): ?>
             <script src="<?php echo $view->escape($url) ?>"></script>
         <?php endforeach ?>
@@ -56,7 +56,7 @@
     <div class="panel panel-default text-center" data-ng-show="registrado">
       <div class="panel-body">
         <h1>Gracias por registrarte!!</h1>
-        <h4>Activa tu cuenta atravez del link que hemos enviado a tu casilla de correo</h4>
+        <h4>Activa tu cuenta a traves del link que hemos enviado a tu casilla de correo</h4>
      </div>
      </div>
 </div>

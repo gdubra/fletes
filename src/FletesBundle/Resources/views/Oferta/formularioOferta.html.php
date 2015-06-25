@@ -1,6 +1,6 @@
 <?php $view->extend('FletesBundle::layout.html.php') ?>
 <?php $view['slots']->start('_assets') ?>        
-        <?php foreach ($view['assetic']->javascripts(array('bundles/fletes/js/formulario-oferta-ctrl.js'),array(),
+        <?php foreach ($view['assetic']->javascripts(array('@FletesBundle/Resources/public/js/formulario-oferta-ctrl.js'),array(),
                    array('output' => 'js/compiled/js.js')) as $url): ?>
             <script src="<?php echo $view->escape($url) ?>"></script>
         <?php endforeach ?>

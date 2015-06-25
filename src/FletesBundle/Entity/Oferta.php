@@ -118,4 +118,18 @@ class Oferta{
     public function setProveedor($proveedor){
         $this->proveedor = $proveedor;
     }
+    
+    public function getProveedor(){
+        return $this->proveedor;
+    }
+    
+    public function getCoordenadasLocalidadesAceptadas(){
+        $array_localidades = json_decode($this->localidadesAceptadas);
+        $array_coordenadas = array();
+        foreach ($array_localidades as $localidad){
+            $array_coordenadas[]= "{$localidad->lat},{$localidad->lng}";
+        }
+        
+        return sizeof($array_coordenadas)>0?implode('|',$array_coordenadas):'';
+    }
 }

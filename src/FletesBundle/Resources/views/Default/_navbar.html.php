@@ -12,6 +12,7 @@
             <ul class="nav navbar-nav col-xs-12 col-sm-10 col-md-10 no-side-margins no-side-margins">
                 <?php if($view['security']->isGranted('IS_AUTHENTICATED_FULLY')):?>
                 <li><a  href="<?php echo $view['router']->generate('logout') ?>">Salir</a></li>
+                <li><a  href="<?php echo $view['router']->generate('formulario_oferta') ?>">Nueva Oferta</a></li>
                 <?php else:?>
                 <li><a  href="<?php echo $view['router']->generate('registrar') ?>">Registrar</a></li>
                 <li><a  href="<?php echo $view['router']->generate('login') ?>">Entrar</a></li>
