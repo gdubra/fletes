@@ -5,4 +5,7 @@
 !app/logs/.gitkeep
 /web/js/*
 /web/css/*
+/web/bundles
+/vendor
+
 
